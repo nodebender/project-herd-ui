@@ -1,0 +1,28 @@
+// Font
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap');
+
+// Breakpoints
+$small-device: 420px;
+$medium-device: 860px;
+$desktop-device: 1024px;
+
+// Text
+$text-default: rgb(63, 63, 63);
+
+// Colors
+$bg-body: hsl(0, 0%, 58%);
+
+// Base
+:root {
+	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
+}
+
+html, body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	color: $text-default;
+	background-color: $bg-body;
+}
