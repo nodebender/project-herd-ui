@@ -1,3 +1,33 @@
 .demo {
 	margin: 1rem;
 }
+
+.stat {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	flex: 1 0 auto;
+}
+
+.stat-key {
+	display: flex;
+	align-items: center;
+	text-transform: uppercase;
+}
+
+.stat-value {
+	font-size: 2rem;
+	font-weight: 500;
+}
+
+.stat-indicator {
+	width: 0.8rem;
+	height: 0.8rem;
+	background-color: grey;
+	margin-right: 1rem;
+
+	&.emergency {
+		background-color: red;
+	}
+}
