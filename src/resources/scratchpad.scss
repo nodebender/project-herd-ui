@@ -2,6 +2,21 @@
 	margin: 1rem;
 }
 
+.statistics {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	background-color: rgb(46, 46, 46);
+	border-radius: 4px;
+	color: white;
+	padding: 1rem;
+	margin: 1rem 0;
+
+	h4 {
+		margin-bottom: 1.5rem;
+	}
+}
+
 .stat {
 	display: flex;
 	flex-direction: row;
