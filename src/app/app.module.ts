@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { DemoComponent } from './views/demo/demo.component';
 import { StatSeverityComponent } from './components/stat-severity/stat-severity.component';
 import { InstanceStatusComponent } from './components/instance-status/instance-status.component';
+import { InstanceUptimeComponent } from './components/instance-uptime/instance-uptime.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DemoComponent,
     StatSeverityComponent,
-    InstanceStatusComponent
+    InstanceStatusComponent,
+    InstanceUptimeComponent
   ],
   imports: [
     BrowserModule,
