@@ -12,6 +12,7 @@ import { InstanceMetricsComponent } from './components/instance-metrics/instance
 import { SearchComponent } from './components/search/search.component';
 import { CheckStateComponent } from './components/check-state/check-state.component';
 
+import { Timer } from "./pipes/human-date.pipe"
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { CheckStateComponent } from './components/check-state/check-state.compon
     InstanceStatisticsComponent,
     InstanceMetricsComponent,
     SearchComponent,
-    CheckStateComponent
+    CheckStateComponent,
+	Timer
   ],
   imports: [
     BrowserModule,
