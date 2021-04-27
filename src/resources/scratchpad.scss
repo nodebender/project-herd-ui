@@ -180,3 +180,53 @@ label.check-label {
 	background-color: purple;
 	text-transform: uppercase;
 }
+
+.details-title {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	h2 {
+		text-transform: uppercase;
+		font-size: 1.2rem;
+	}
+
+	.system {
+		font-weight: 600;
+		margin-right: 0.4rem;
+	}
+
+	.label {
+		padding: 0.4rem;
+		border-radius: 4px;
+		background-color: purple;
+	}
+
+}
+
+.details-content {
+	margin: 1.5rem 0;
+
+	li {
+		display: grid;
+		grid-template-columns: auto 70%;
+		margin-bottom: 0.4rem;
+
+		h5 {
+			margin-right: 2rem;
+		}
+	}
+}
+
+.details-tags {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	li {
+		margin: 0.2rem;
+		padding: 0.4rem;
+		border-radius: 4px;
+		background-color: grey;
+	}
+}
