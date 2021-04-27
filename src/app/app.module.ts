@@ -8,6 +8,7 @@ import { SeverityComponent } from './components/instance-statistics/severity/sev
 import { InstanceStatusComponent } from './components/instance-status/instance-status.component';
 import { InstanceUptimeComponent } from './components/instance-uptime/instance-uptime.component';
 import { InstanceStatisticsComponent } from './components/instance-statistics/instance-statistics.component';
+import { InstanceMetricsComponent } from './components/instance-metrics/instance-metrics.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { InstanceStatisticsComponent } from './components/instance-statistics/in
     SeverityComponent,
     InstanceStatusComponent,
     InstanceUptimeComponent,
-    InstanceStatisticsComponent
+    InstanceStatisticsComponent,
+    InstanceMetricsComponent
   ],
   imports: [
     BrowserModule,
