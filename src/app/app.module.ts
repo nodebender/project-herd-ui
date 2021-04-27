@@ -9,6 +9,7 @@ import { InstanceStatusComponent } from './components/instance-status/instance-s
 import { InstanceUptimeComponent } from './components/instance-uptime/instance-uptime.component';
 import { InstanceStatisticsComponent } from './components/instance-statistics/instance-statistics.component';
 import { InstanceMetricsComponent } from './components/instance-metrics/instance-metrics.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { InstanceMetricsComponent } from './components/instance-metrics/instance
     InstanceStatusComponent,
     InstanceUptimeComponent,
     InstanceStatisticsComponent,
-    InstanceMetricsComponent
+    InstanceMetricsComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
