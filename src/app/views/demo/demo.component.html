@@ -1,17 +1,5 @@
 <section class="demo">
-	
-	<div class="statistics">
-		<h4>Statistics</h4>
-		<stat-severity level="emergency" value="32"></stat-severity>
-		<stat-severity level="alert" value="1"></stat-severity>
-		<stat-severity level="critical" value="21"></stat-severity>
-		<stat-severity level="error" value="15"></stat-severity>
-		<stat-severity level="warning" value="245"></stat-severity>
-		<stat-severity level="notice" value="2345"></stat-severity>
-		<stat-severity level="informational" value="5"></stat-severity>
-		<stat-severity level="debug" value="15"></stat-severity>
-	</div>
-
 	<instance-status [info]="instance"></instance-status>
-	<instance-uptime unix="1618210814"></instance-uptime>
+	<instance-uptime [unix]="uptime"></instance-uptime>
+	<instance-statistics [statistics]="statistics"></instance-statistics>
 </section>
