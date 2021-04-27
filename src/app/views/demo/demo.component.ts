@@ -25,6 +25,18 @@ export class DemoComponent implements OnInit {
 		status: true
 	}
 
+
+	metrics: any[] = [
+		{
+			key: "Reports per hour",
+			value: 234234,
+		},
+		{
+			key: "Changes per hour",
+			value: 2134,
+		}
+	]
+
 	constructor() {}
 
   	ngOnInit(): void {}

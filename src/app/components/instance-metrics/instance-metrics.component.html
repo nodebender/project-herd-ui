@@ -1,26 +1,13 @@
 <div class="statistics instance-info">
 	<h4>Metrics</h4>
 
-	<ul>
-		<li>
-			<h5>Connected systems</h5>
-			<p>23142</p>
-		</li>
-		<li>
-			<h5>Checks in total</h5>
-			<p>223142</p>
-		</li>
-		<li>
-			<h5>Exporter schedule</h5>
-			<p>176</p>
-		</li>
-		<li>
-			<h5>Reports per hour</h5>
-			<p>42</p>
-		</li>
-		<li>
-			<h5>Changes per hour</h5>
-			<p>22</p>
-		</li>
-	</ul>
+	<div class="metrics">
+		<ul>
+			<li *ngFor="let metric of metrics">
+				<h5>{{ metric.key }}</h5>
+				<p>{{ metric.value }}</p>
+			</li>
+		</ul>
+	</div>
+	
 </div>

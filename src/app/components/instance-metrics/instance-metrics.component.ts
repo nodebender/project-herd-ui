@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+interface Metric {
+	key: string
+	value: any
+}
 
 @Component({
   selector: 'instance-metrics',
@@ -6,9 +11,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InstanceMetricsComponent implements OnInit {
 
-  constructor() { }
+	@Input() metrics: Metric[]
+	constructor() { }
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+	}
 
 }

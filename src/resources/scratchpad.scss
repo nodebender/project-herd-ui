@@ -91,3 +91,11 @@
 		font-weight: 500;
 	}
 }
+
+// Metrics
+.metrics {
+	display: flex;
+	flex-direction: column;
+	// justify-content: center;
+	align-items: center;
+}
