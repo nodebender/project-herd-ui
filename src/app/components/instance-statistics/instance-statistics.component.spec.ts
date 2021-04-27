@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { InstanceStatisticsComponent } from "./instance-statistics.component";
@@ -10,7 +10,7 @@ describe("InstanceStatisticsComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ InstanceStatisticsComponent ],
-	  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+	  schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
     })
     .compileComponents();
   });
@@ -40,7 +40,7 @@ describe("InstanceStatisticsComponent", () => {
 
   it("should render 8 stat-severity components", () => {
     const compiled = fixture.nativeElement;
-	let list = fixture.debugElement.queryAll(By.css('stat-severity'));
+	let list = fixture.debugElement.queryAll(By.css('severity'));
     expect(list.length).toBe(8);
   });
 

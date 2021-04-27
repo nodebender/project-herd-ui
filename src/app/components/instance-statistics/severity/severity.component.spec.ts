@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { StatSeverityComponent } from "./stat-severity.component";
+import { SeverityComponent } from "./severity.component";
 
 describe("StatSeverityComponent", () => {
-  let component: StatSeverityComponent;
-  let fixture: ComponentFixture<StatSeverityComponent>;
+  let component: SeverityComponent;
+  let fixture: ComponentFixture<SeverityComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StatSeverityComponent ]
+      declarations: [ SeverityComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StatSeverityComponent);
+    fixture = TestBed.createComponent(SeverityComponent);
     component = fixture.componentInstance;
 
 	// Inject input values
