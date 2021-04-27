@@ -10,6 +10,7 @@ import { InstanceUptimeComponent } from './components/instance-uptime/instance-u
 import { InstanceStatisticsComponent } from './components/instance-statistics/instance-statistics.component';
 import { InstanceMetricsComponent } from './components/instance-metrics/instance-metrics.component';
 import { SearchComponent } from './components/search/search.component';
+import { CheckStateComponent } from './components/check-state/check-state.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SearchComponent } from './components/search/search.component';
     InstanceStatisticsComponent,
     InstanceMetricsComponent,
     SearchComponent,
+    CheckStateComponent
   ],
   imports: [
     BrowserModule,

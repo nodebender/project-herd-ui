@@ -37,6 +37,15 @@ export class DemoComponent implements OnInit {
 		}
 	]
 
+
+	check = {
+		system: "testsys",
+		label: "unit",
+		status_code: "CHECKING",
+		updated_at: 1618210814,
+		changed_at: 1618210814,
+	}
+
 	constructor() {}
 
   	ngOnInit(): void {}

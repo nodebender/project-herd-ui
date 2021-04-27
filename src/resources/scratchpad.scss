@@ -141,3 +141,42 @@
 		border-radius: 4px;
 	}
 }
+
+.quick-state {
+	display: grid;
+	grid-template-columns: auto 25%;
+	background-color: rgb(46, 46, 46);
+	border-radius: 4px;
+	color: white;
+	border-left: 1rem solid red;
+	align-items: center;
+	padding: 1rem;
+	.info {
+
+	}
+
+	.time {
+		text-align: right;
+		font-style: italic;
+	}
+}
+
+.quick-title {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	h4 {
+		text-transform: uppercase;
+		margin-right: 0.4rem;
+	}
+
+	margin-bottom: 0.4rem;
+}
+
+label.check-label {
+	padding: 0.2rem 0.4rem;
+	border-radius: 4px;
+	background-color: purple;
+	text-transform: uppercase;
+}
