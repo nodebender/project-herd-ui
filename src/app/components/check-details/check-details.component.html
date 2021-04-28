@@ -1,0 +1,30 @@
+<div class="statistics">
+	<div class="details-title">
+		<h2 class="system">{{ state.system }}</h2>
+		<h2 class="label">{{ state.label }}</h2>
+	</div>
+
+	<ul class="details-content">
+		<li>
+			<h5>Status</h5>
+			<p id="status">{{ state.status_code }}</p>
+		</li>
+		<li>
+			<h5>Severity</h5>
+			<p id="severity">{{ severity }}</p>
+		</li>
+		<li>
+			<h5>Description</h5>
+			<p id="description">{{ state.description }}</p>
+		</li>
+	</ul>
+
+	<h5>Tags:</h5>
+
+	<ul class="details-tags">
+		<li *ngFor="let tag of state.tags">
+			{{ tag }}
+		</li>
+	</ul>
+
+</div>

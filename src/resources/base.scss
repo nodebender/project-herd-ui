@@ -26,3 +26,8 @@ html, body{
 	color: $text-default;
 	background-color: $bg-body;
 }
+
+body {
+	display: fixed;
+	// overflow: hidden;
+}
