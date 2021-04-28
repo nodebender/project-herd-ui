@@ -30,13 +30,13 @@ describe("StatSeverityComponent", () => {
 
   it("should render level", () => {
     const compiled = fixture.nativeElement;
-	let div = compiled.querySelector(".stat-key h5")
+	const div = compiled.querySelector(".stat-key h5")
     expect(div.textContent).toContain("emergency");
   });
 
   it("should render value", () => {
     const compiled = fixture.nativeElement;
-	let div = compiled.querySelector(".stat-value h2")
+	const div = compiled.querySelector(".stat-value h2")
     expect(div.textContent).toContain("1111");
   });
 

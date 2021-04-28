@@ -1,6 +1,6 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
-@Pipe({name: 'humanTime'})
+@Pipe({name: "humanTime"})
 export class Timer implements PipeTransform {
 
   transform(value: any): any {
@@ -12,28 +12,28 @@ export class Timer implements PipeTransform {
 
 		// less than 30 seconds ago will show as 'Just now'
         if (seconds < 29) {
-			return 'Just now';
+			return "Just now";
 		}
             
         const intervals = {
-            'year': 31536000,
-            'month': 2592000,
-            'week': 604800,
-            'day': 86400,
-            'hour': 3600,
-            'minute': 60,
-            'second': 1
+            "year": 31536000,
+            "month": 2592000,
+            "week": 604800,
+            "day": 86400,
+            "hour": 3600,
+            "minute": 60,
+            "second": 1
         };
 
         let counter;
 		
-        for (const i in intervals) {
+        for (const i of Object.keys(intervals)) {
             counter = Math.floor(seconds / intervals[i]);
             if (counter > 0)
                 if (counter === 1) {
-                    return counter + ' ' + i + ' ago'; // singular (1 day ago)
+                    return counter + " " + i + " ago"; // singular (1 day ago)
                 } else {
-                    return counter + ' ' + i + 's ago'; // plural (2 days ago)
+                    return counter + " " + i + "s ago"; // plural (2 days ago)
                 }
         	}
     	}

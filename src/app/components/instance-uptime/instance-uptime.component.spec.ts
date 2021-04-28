@@ -28,7 +28,7 @@ describe("InstanceUptimeComponent", () => {
 
   it("should render name", () => {
     const compiled = fixture.nativeElement;
-	let name = compiled.querySelector("div h1")
+	const name = compiled.querySelector("div h1")
     expect(name.textContent).toContain("18D 17H 30M");
   });
 

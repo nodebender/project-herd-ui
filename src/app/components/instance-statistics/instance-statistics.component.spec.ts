@@ -40,7 +40,7 @@ describe("InstanceStatisticsComponent", () => {
 
   it("should render 8 stat-severity components", () => {
     const compiled = fixture.nativeElement;
-	let list = fixture.debugElement.queryAll(By.css('severity'));
+	const list = fixture.debugElement.queryAll(By.css("app-severity"));
     expect(list.length).toBe(8);
   });
 

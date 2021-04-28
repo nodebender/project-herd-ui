@@ -12,7 +12,7 @@ interface Statistics {
 }
 
 @Component({
-  selector: "instance-statistics",
+  selector: "app-instance-statistics",
   templateUrl: "./instance-statistics.component.html",
 })
 export class InstanceStatisticsComponent implements OnInit {

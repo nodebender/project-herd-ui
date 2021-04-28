@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { Timer } from "@app/pipes/human-date.pipe";
 
-import { CommentComponent } from './comment.component';
+import { CommentComponent } from "./comment.component";
 
-describe('CommentComponent', () => {
+describe("CommentComponent", () => {
   let component: CommentComponent;
   let fixture: ComponentFixture<CommentComponent>;
 
@@ -27,21 +27,21 @@ describe('CommentComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
   it("should render the author", () => {
     const compiled = fixture.nativeElement;
-	let h5 = compiled.querySelector(".author h5")
-	let author = h5.textContent.trim()
+	const h5 = compiled.querySelector(".author h5")
+	const author = h5.textContent.trim()
     expect(author).toBe("Testuser");
   });
 
   it("should render the message", () => {
     const compiled = fixture.nativeElement;
-	let p = compiled.querySelector(".comment p")
-	let message = p.textContent.trim()
+	const p = compiled.querySelector(".comment p")
+	const message = p.textContent.trim()
     expect(message).toBe("I am taking care of this problem at the moment. Just don’t touch anything...");
   });
 });

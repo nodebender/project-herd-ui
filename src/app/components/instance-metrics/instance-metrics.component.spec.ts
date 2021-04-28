@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
-import { InstanceMetricsComponent } from './instance-metrics.component';
+import { InstanceMetricsComponent } from "./instance-metrics.component";
 
-describe('InstanceMetricsComponent', () => {
+describe("InstanceMetricsComponent", () => {
   let component: InstanceMetricsComponent;
   let fixture: ComponentFixture<InstanceMetricsComponent>;
 
@@ -18,7 +18,7 @@ describe('InstanceMetricsComponent', () => {
     fixture = TestBed.createComponent(InstanceMetricsComponent);
     component = fixture.componentInstance;
 
-	let metrics = [
+	const metrics = [
 		{
 			key: "Reports per hour",
 			value: 3242
@@ -33,7 +33,7 @@ describe('InstanceMetricsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
@@ -42,7 +42,7 @@ describe('InstanceMetricsComponent', () => {
     const compiled = fixture.nativeElement;
 
 	// Get a list of all <li> elements
-	let list = fixture.debugElement.queryAll(By.css('li'));
+	const list = fixture.debugElement.queryAll(By.css("li"));
 
 	// We injected 2 - so there should be 2
     expect(list.length).toBe(2);
@@ -52,13 +52,13 @@ describe('InstanceMetricsComponent', () => {
     const compiled = fixture.nativeElement;
 
 	// Get a list of all <li> elements
-	let list = fixture.debugElement.queryAll(By.css('li'));
+	const list = fixture.debugElement.queryAll(By.css("li"));
 
 	// Take 2nd element `Checks per hour`
-	let report = list[1].nativeElement
+	const report = list[1].nativeElement
 
 	// Result should be the value of the <p> element
-	let result = report.querySelector("p").textContent
+	const result = report.querySelector("p").textContent
 	
     expect(result).toBe("111");
   });

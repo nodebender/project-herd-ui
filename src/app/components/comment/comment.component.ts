@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
 
 interface Comment {
 	author: string
@@ -7,8 +7,8 @@ interface Comment {
 }
 
 @Component({
-  selector: 'app-comment',
-  templateUrl: './comment.component.html',
+  selector: "app-comment",
+  templateUrl: "./comment.component.html",
 })
 export class CommentComponent implements OnInit {
 

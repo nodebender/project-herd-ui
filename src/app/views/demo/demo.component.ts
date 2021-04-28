@@ -1,25 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 interface Check {
 	system: string
 	label: string
-	status_code: string
+	statusCode: string
 	description: string
 	tags: string[]
 	severity: number
 	ttl: number
 	network: string[]
-	updated_at: number
-	changed_at: number
+	updatedAt: number
+	changedAt: number
 }
 
 @Component({
-  selector: 'app-demo',
-  templateUrl: './demo.component.html'
+  selector: "app-demo",
+  templateUrl: "./demo.component.html"
 })
 export class DemoComponent implements OnInit {
 
-	uptime: number = 1618210814
+	uptime = 1618210814
 
 	statistics: any = {
 		emergency: 12,
@@ -53,7 +53,7 @@ export class DemoComponent implements OnInit {
 	check: Check = {
 		system: "testsys",
 		label: "unit",
-		status_code: "CPU_USAGE_EXCEEDED",
+		statusCode: "CPU_USAGE_EXCEEDED",
 		description: "The cpu usage is currently 82%.Polling every 10 sec.",
 		tags: [
 			"demo",
@@ -65,8 +65,8 @@ export class DemoComponent implements OnInit {
 		network: [
 			"unknown"
 		],
-		updated_at: 1618210814,
-		changed_at: 1618210814,
+		updatedAt: 1618210814,
+		changedAt: 1618210814,
 	}
 
 	comment: any = {

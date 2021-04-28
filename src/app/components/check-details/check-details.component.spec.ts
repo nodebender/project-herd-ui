@@ -21,7 +21,7 @@ describe("CheckDetailsComponent", () => {
 	component.state = {
 		system: "testsys",
 		label: "unit",
-		status_code: "CPU_USAGE_EXCEEDED",
+		statusCode: "CPU_USAGE_EXCEEDED",
 		description: "The cpu usage is currently 82%.Polling every 10 sec.",
 		tags: [
 			"demo",
@@ -33,8 +33,8 @@ describe("CheckDetailsComponent", () => {
 		network: [
 			"unknown"
 		],
-		updated_at: 1618210814,
-		changed_at: 1618210814,
+		updatedAt: 1618210814,
+		changedAt: 1618210814,
 	}
 
     fixture.detectChanges();
@@ -46,39 +46,39 @@ describe("CheckDetailsComponent", () => {
 
   it("should render system", () => {
     const compiled = fixture.nativeElement;
-	let h2 = compiled.querySelector(".details-title .system")
+	const h2 = compiled.querySelector(".details-title .system")
     expect(h2.textContent).toBe("testsys");
   });
 
   it("should render label", () => {
     const compiled = fixture.nativeElement;
-	let h2 = compiled.querySelector(".details-title .label")
+	const h2 = compiled.querySelector(".details-title .label")
     expect(h2.textContent).toBe("unit");
   });
 
   it("should render status code", () => {
     const compiled = fixture.nativeElement;
-	let p = compiled.querySelector("#status")
+	const p = compiled.querySelector("#status")
 
     expect(p.textContent).toBe("CPU_USAGE_EXCEEDED");
   });
 
   it("should render (translated) severity", () => {
     const compiled = fixture.nativeElement;
-	let p = compiled.querySelector("#severity")
+	const p = compiled.querySelector("#severity")
 
     expect(p.textContent).toBe("NOTICE");
   });
 
   it("should render description", () => {
     const compiled = fixture.nativeElement;
-	let p = compiled.querySelector("#description")
+	const p = compiled.querySelector("#description")
 
     expect(p.textContent).toBe("The cpu usage is currently 82%.Polling every 10 sec.");
   });
 
   it("should render 3 tags", fakeAsync(() => {
-	const tags = fixture.debugElement.queryAll(By.css('.details-tags li'));
+	const tags = fixture.debugElement.queryAll(By.css(".details-tags li"));
     expect(tags.length).toBe(3)
   }));
 });

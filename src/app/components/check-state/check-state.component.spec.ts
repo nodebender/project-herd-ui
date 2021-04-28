@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { Timer } from "@app/pipes/human-date.pipe";
 
-import { CheckStateComponent } from './check-state.component';
+import { CheckStateComponent } from "./check-state.component";
 
-describe('CheckStateComponent', () => {
+describe("CheckStateComponent", () => {
   let component: CheckStateComponent;
   let fixture: ComponentFixture<CheckStateComponent>;
 
@@ -21,33 +21,33 @@ describe('CheckStateComponent', () => {
 	component.state = {
 		system: "testsys",
 		label: "unit",
-		status_code: "CHECKING",
-		updated_at: 1618210814,
-		changed_at: 1618210814,
+		statusCode: "CHECKING",
+		updatedAt: 1618210814,
+		changedAt: 1618210814,
 	}
 
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
   it("should render system", () => {
     const compiled = fixture.nativeElement;
-	let connection = compiled.querySelector(".quick-title h4")
+	const connection = compiled.querySelector(".quick-title h4")
     expect(connection.textContent).toBe("testsys");
   });
 
   it("should render label", () => {
     const compiled = fixture.nativeElement;
-	let connection = compiled.querySelector(".quick-title label")
+	const connection = compiled.querySelector(".quick-title label")
     expect(connection.textContent).toBe("unit");
   });
 
   it("should render status code", () => {
     const compiled = fixture.nativeElement;
-	let connection = compiled.querySelector(".info h2")
+	const connection = compiled.querySelector(".info h2")
     expect(connection.textContent).toBe("CHECKING");
   });
 

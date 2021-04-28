@@ -5,5 +5,5 @@ import { Component } from "@angular/core";
 	templateUrl: "./app.component.html"
 })
 export class AppComponent {
-	message: string = "welcome herders!"
+	message = "welcome herders!"
 }

@@ -3,18 +3,18 @@ import { Component, OnInit, Input } from "@angular/core";
 interface State {
 	system: string
 	label: string
-	status_code: string
+	statusCode: string
 	description: string
 	tags: string[]
 	severity: number
 	ttl: number
 	network: string[]
-	updated_at: number
-	changed_at: number
+	updatedAt: number
+	changedAt: number
 }
 
 @Component({
-  selector: "check-details",
+  selector: "app-check-details",
   templateUrl: "./check-details.component.html",
 })
 export class CheckDetailsComponent implements OnInit {

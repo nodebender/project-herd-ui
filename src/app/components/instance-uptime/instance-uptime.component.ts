@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: "instance-uptime",
+  selector: "app-instance-uptime",
   templateUrl: "./instance-uptime.component.html",
 })
 export class InstanceUptimeComponent implements OnInit {
@@ -12,11 +12,11 @@ export class InstanceUptimeComponent implements OnInit {
 
   get uptime() {
 
-	let seconds = this.unix / 1000
+	const seconds = this.unix / 1000
 
-	var days = Math.floor((seconds % 31536000) / 86400); 
-	var hours = Math.floor(((seconds % 31536000) % 86400) / 3600);
-	var minutes = Math.floor((((seconds % 31536000) % 86400) % 3600) / 60);
+	const days = Math.floor((seconds % 31536000) / 86400); 
+	const hours = Math.floor(((seconds % 31536000) % 86400) / 3600);
+	const minutes = Math.floor((((seconds % 31536000) % 86400) % 3600) / 60);
 
 	return `${days}D ${hours}H ${minutes}M`
 

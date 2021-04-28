@@ -7,7 +7,7 @@ interface Instance {
 }
 
 @Component({
-  selector: "instance-status",
+  selector: "app-instance-status",
   templateUrl: "./instance-status.component.html",
 })
 export class InstanceStatusComponent implements OnInit {

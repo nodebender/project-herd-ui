@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: "severity",
+  selector: "app-severity",
   templateUrl: "./severity.component.html",
 })
 export class SeverityComponent implements OnInit {

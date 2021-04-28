@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { InstanceStatusComponent } from './instance-status.component';
+import { InstanceStatusComponent } from "./instance-status.component";
 
-describe('InstanceStatusComponent', () => {
+describe("InstanceStatusComponent", () => {
   let component: InstanceStatusComponent;
   let fixture: ComponentFixture<InstanceStatusComponent>;
 
@@ -27,25 +27,25 @@ describe('InstanceStatusComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
   it("should render name", () => {
     const compiled = fixture.nativeElement;
-	let name = compiled.querySelector("div h2")
+	const name = compiled.querySelector("div h2")
     expect(name.textContent).toContain("testinstance-1");
   });
 
   it("should render version", () => {
     const compiled = fixture.nativeElement;
-	let version = compiled.querySelector("#version")
+	const version = compiled.querySelector("#version")
     expect(version.textContent).toContain("0.0.1beta+1");
   });
 
   it("should render connection status", () => {
     const compiled = fixture.nativeElement;
-	let connection = compiled.querySelector("#connection")
+	const connection = compiled.querySelector("#connection")
     expect(connection.textContent).toBeTruthy();
   });
 
