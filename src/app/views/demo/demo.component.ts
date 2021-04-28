@@ -50,7 +50,6 @@ export class DemoComponent implements OnInit {
 		}
 	]
 
-
 	check: Check = {
 		system: "testsys",
 		label: "unit",
@@ -68,6 +67,12 @@ export class DemoComponent implements OnInit {
 		],
 		updated_at: 1618210814,
 		changed_at: 1618210814,
+	}
+
+	comment: any = {
+		author: "Username",
+		message: "I am taking care of this problem at the moment. Just don’t touch anything...",
+		created: 1618210814
 	}
 
 	constructor() {}

@@ -230,3 +230,20 @@ label.check-label {
 		background-color: grey;
 	}
 }
+
+.comment {
+	.author {
+		display: flex;
+		flex-direction: row;
+		margin-bottom: 0.4rem;
+		h5 {
+			font-weight: 600;
+			margin-right: 0.4rem;
+		}
+
+		span {
+			color: grey;
+			font-style: italic;
+		}
+	}
+}

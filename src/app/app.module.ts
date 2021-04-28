@@ -13,7 +13,8 @@ import { SearchComponent } from './components/search/search.component';
 import { CheckStateComponent } from './components/check-state/check-state.component';
 
 import { Timer } from "./pipes/human-date.pipe";
-import { CheckDetailsComponent } from './components/check-details/check-details.component'
+import { CheckDetailsComponent } from './components/check-details/check-details.component';
+import { CommentComponent } from './components/comment/comment.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { CheckDetailsComponent } from './components/check-details/check-details.
     SearchComponent,
     CheckStateComponent,
 	Timer,
-	CheckDetailsComponent
+	CheckDetailsComponent,
+	CommentComponent
   ],
   imports: [
     BrowserModule,
