@@ -6,5 +6,5 @@
 </section>
 
 <section>
-	<app-check-state *ngFor="let check of filtered" [state]="check"></app-check-state>
+	<app-check-state *ngFor="let check of filtered" [state]="check" (click)="goTo(check)"></app-check-state>
 </section>

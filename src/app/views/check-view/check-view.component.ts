@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { StoreService, Check } from "@app/services/store.service"
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
 	selector: "app-check-view",
@@ -10,7 +11,7 @@ export class CheckViewComponent implements OnInit {
 	checks: Check[]
 	keyword: string
 
-  	constructor(private store: StoreService) {}
+  	constructor(private store: StoreService, private router: Router) {}
 
 	get filtered() {
 
@@ -29,6 +30,12 @@ export class CheckViewComponent implements OnInit {
 		return this.checks.filter(check => {
 			return check.system.startsWith(this.keyword)
 		})
+	}
+
+	public goTo(check: Check) {
+		let identifier = `${check.system}-${check.label}`
+
+		return this.router.navigate(["/check/", identifier])
 	}
 
 	public search(event: KeyboardEvent) {
