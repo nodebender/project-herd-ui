@@ -1,15 +1,16 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { DemoComponent } from "@app/views/demo/demo.component"
 import { CheckViewComponent } from "@app/views/check-view/check-view.component"
+import { CheckDetailsComponent } from "@app/views/check-details/check-details.component"
+
 const routes: Routes = [
 	{
 		path: "",
-		component: DemoComponent
+		component: CheckViewComponent
 	},
 	{
-		path: "checks",
-		component: CheckViewComponent
+		path: "check/:id",
+		component: CheckDetailsComponent
 	}
 ];
 

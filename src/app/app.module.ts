@@ -3,7 +3,6 @@ import { NgModule } from "@angular/core";
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { DemoComponent } from "./views/demo/demo.component";
 import { SeverityComponent } from "./components/instance-statistics/severity/severity.component";
 import { InstanceStatusComponent } from "./components/instance-status/instance-status.component";
 import { InstanceUptimeComponent } from "./components/instance-uptime/instance-uptime.component";
@@ -12,14 +11,13 @@ import { InstanceMetricsComponent } from "./components/instance-metrics/instance
 import { CheckStateComponent } from "./components/check-state/check-state.component";
 
 import { Timer } from "./pipes/human-date.pipe";
-import { CheckDetailsComponent } from "./components/check-details/check-details.component";
 import { CommentComponent } from "./components/comment/comment.component";
 import { CheckViewComponent } from "./views/check-view/check-view.component";
+import { CheckDetailsComponent } from "./views/check-details/check-details.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoComponent,
     SeverityComponent,
     InstanceStatusComponent,
     InstanceUptimeComponent,

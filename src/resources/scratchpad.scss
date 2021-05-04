@@ -189,6 +189,7 @@ label.check-label {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	color: white;
 
 	h2 {
 		text-transform: uppercase;
@@ -210,6 +211,7 @@ label.check-label {
 
 .details-content {
 	margin: 1.5rem 0;
+	color: grey;
 
 	li {
 		display: grid;
@@ -218,6 +220,7 @@ label.check-label {
 
 		h5 {
 			margin-right: 2rem;
+			color: white;
 		}
 	}
 }
@@ -232,14 +235,18 @@ label.check-label {
 		padding: 0.4rem;
 		border-radius: 4px;
 		background-color: grey;
+		color: white;
 	}
 }
 
 .comment {
+	margin-bottom: 0.4rem;
+
 	.author {
 		display: flex;
 		flex-direction: row;
 		margin-bottom: 0.4rem;
+
 		h5 {
 			font-weight: 600;
 			margin-right: 0.4rem;
