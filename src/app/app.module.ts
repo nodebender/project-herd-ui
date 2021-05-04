@@ -9,12 +9,13 @@ import { InstanceStatusComponent } from "./components/instance-status/instance-s
 import { InstanceUptimeComponent } from "./components/instance-uptime/instance-uptime.component";
 import { InstanceStatisticsComponent } from "./components/instance-statistics/instance-statistics.component";
 import { InstanceMetricsComponent } from "./components/instance-metrics/instance-metrics.component";
-import { SearchComponent } from "./components/search/search.component";
 import { CheckStateComponent } from "./components/check-state/check-state.component";
 
 import { Timer } from "./pipes/human-date.pipe";
 import { CheckDetailsComponent } from "./components/check-details/check-details.component";
-import { CommentComponent } from "./components/comment/comment.component"
+import { CommentComponent } from "./components/comment/comment.component";
+import { CheckViewComponent } from "./views/check-view/check-view.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,11 +25,11 @@ import { CommentComponent } from "./components/comment/comment.component"
     InstanceUptimeComponent,
     InstanceStatisticsComponent,
     InstanceMetricsComponent,
-    SearchComponent,
     CheckStateComponent,
 	Timer,
 	CheckDetailsComponent,
-	CommentComponent
+	CommentComponent,
+	CheckViewComponent,
   ],
   imports: [
     BrowserModule,

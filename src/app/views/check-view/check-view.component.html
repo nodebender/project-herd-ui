@@ -1,0 +1,10 @@
+<section class="block">
+	<div class="search-bar">
+		<input class="hidden-input" type="text" (keydown)="search($event)">
+	</div>
+
+</section>
+
+<section>
+	<app-check-state *ngFor="let check of filtered" [state]="check"></app-check-state>
+</section>

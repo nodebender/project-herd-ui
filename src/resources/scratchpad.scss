@@ -10,7 +10,7 @@
 	border-radius: 4px;
 	color: white;
 	padding: 1rem;
-	margin: 1rem 0;
+	// margin: 1rem 0;
 
 	h4 {
 		margin-bottom: 1.5rem;
@@ -100,46 +100,48 @@
 	align-items: center;
 }
 
+app-search {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 0.4rem;
+}
+
 .search-bar {
 	position: relative;
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	background-color: black;
-	padding: 0.6rem;
+	padding: 0.5rem;
 	border-radius: 4px;
 	width: 100%;
+	margin-bottom: 0.4rem;
+}
 
-	input {
-		width: 100%;
-		border: 0;
-		color: white;
+input.hidden-input {
+	width: 100%;
+	border: 0;
+	color: white;
+	font-size: 1.2rem;
+	background-color: black;
+}
 
-		font-size: 1.2rem;
+li.label {
+	border-radius: 4px;
+	padding: 0.4rem;
+	margin: 0.2rem;
 
-		background-color: black;
-		&:focus {
-			outline: none;
-		}
-	}
-
-	button {
-		border: 0;
-		border-radius: 4px;
-		padding: 0.4rem 1rem;
+	&.system {
 		background-color: purple;
-		font-size: 1.2rem;
-		color: white;
 	}
 
-	ul {
-		width: 100%;
-		position: absolute;
-		top: 3rem;
-		left: 0;
-		background-color: black;
-		padding: 0.6rem;
-		border-radius: 4px;
+	&.tag {
+		background-color: grey;
 	}
+}
+
+a.close {
+	margin-right: 0.4rem;
 }
 
 .quick-state {
@@ -151,6 +153,8 @@
 	border-left: 1rem solid red;
 	align-items: center;
 	padding: 1rem;
+	margin: 0.4rem;
+	
 	.info {
 
 	}

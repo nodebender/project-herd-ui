@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-interface Check {
+export interface Check {
 	system: string
 	label: string
 	statusCode: string

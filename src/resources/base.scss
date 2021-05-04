@@ -11,10 +11,11 @@ $text-default: rgb(63, 63, 63);
 
 // Colors
 $bg-body: hsl(0, 0%, 58%);
+$bg-backdrop: hsl(0, 0%, 17%);
 
 // Base
 :root {
-	font-size: 16px;
+	font-size: 20px;
 	font-family: 'Roboto', sans-serif;
 }
 
@@ -30,4 +31,16 @@ html, body{
 body {
 	display: fixed;
 	// overflow: hidden;
+}
+
+input {
+	&:focus {
+		outline: none;
+	}
+}
+
+a {
+	color: inherit;
+	text-decoration: inherit;
+	cursor: inherit;
 }
