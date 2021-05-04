@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from "@angular/core";
 interface Comment {
 	author: string
 	message: string
-	created: number
+	createdAt: number
 }
 
 @Component({
