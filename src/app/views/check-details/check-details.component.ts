@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { StoreService } from "@app/services/store.service"
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from "@app/services/api.service"
 
 interface State {
 	system: string
@@ -22,9 +22,10 @@ interface State {
 export class CheckDetailsComponent implements OnInit {
 
 	identifier: string
+	ready: boolean
 	state: State
 
-	constructor(private route: ActivatedRoute, private store: StoreService) { }
+	constructor(private route: ActivatedRoute, private api: ApiService) {}
 
 	get severity() {
 		switch(this.state.severity) {
@@ -58,13 +59,9 @@ export class CheckDetailsComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.route.params.subscribe(params => {
-			this.identifier = params.id
-		})
-
-		this.store.getChecks().subscribe(checks => {
-			this.state = checks.find(check => {
-				let name = `${check.system}-${check.label}`
-				return name == this.identifier
+			this.api.getById(params.id).subscribe(state => {
+				this.state = state
+				this.ready = true
 			})
 		})
 

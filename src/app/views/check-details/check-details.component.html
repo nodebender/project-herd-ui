@@ -1,4 +1,4 @@
-<section *ngIf="state" class="block">
+<section *ngIf="ready" class="block">
 	<div class="details-title">
 		<h2 class="system">{{ state.system }}</h2>
 		<h2 class="label">{{ state.label }}</h2>
@@ -29,6 +29,6 @@
 
 </section>
 
-<section *ngIf="state" class="container">
+<section *ngIf="ready" class="container">
 	<app-comment *ngFor="let comment of state.comments" [comment]="comment"></app-comment>
 </section>

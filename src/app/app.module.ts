@@ -15,6 +15,8 @@ import { CommentComponent } from "./components/comment/comment.component";
 import { CheckViewComponent } from "./views/check-view/check-view.component";
 import { CheckDetailsComponent } from "./views/check-details/check-details.component";
 
+import { StoreService } from "./services/store.service"
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,7 @@ import { CheckDetailsComponent } from "./views/check-details/check-details.compo
 	HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [StoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
