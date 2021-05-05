@@ -1,0 +1,36 @@
+<div class="search-filter">
+
+	<div class="search-filter-item active">
+		<a class="filter-item" href="#">systems</a>
+	</div>
+
+	<div class="search-filter-item active">
+		<a class="filter-item" href="#">tags</a>
+
+		<div class="filter-dropdown">
+			<div class="search-field">
+				<input type="text">
+				icon
+			</div>
+
+			<div class="search-results" >
+				<ul>
+					<li *ngFor="let tag of selected" class=search-result>
+						<span class="checked"></span>
+						<a (click)="deSelect(tag)">{{ tag }}</a>
+					</li>	
+				</ul>
+				
+				<ul>
+					<li *ngFor="let tag of tags" class=search-result>
+						<span></span>
+						<a (click)="select(tag)">{{ tag }}</a>
+					</li>	
+				</ul>
+
+			</div>
+		</div>
+	</div>
+
+
+</div>
