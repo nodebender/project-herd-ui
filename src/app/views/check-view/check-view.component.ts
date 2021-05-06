@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { StoreService, Check } from "@app/services/store.service"
+import { ApiService, Check } from "@app/services/api.service"
 import { Router, ActivatedRoute } from '@angular/router';
-import { delay, share } from 'rxjs/operators';
 import { Observable } from "rxjs"
 @Component({
 	selector: "app-check-view",
@@ -9,12 +8,12 @@ import { Observable } from "rxjs"
 })
 export class CheckViewComponent implements OnInit {
 
-	allChecks: Check[]
+	allChecks: Check[] = []
 	allTags: Set<string>
 	checks$: Observable<Check[]>
 	keyword: string
 
-  	constructor(private store: StoreService, private router: Router, private route: ActivatedRoute) {
+  	constructor(private api: ApiService, private router: Router, private route: ActivatedRoute) {
 		  this.allTags = new Set<string>()
 	  }
 
@@ -80,13 +79,16 @@ export class CheckViewComponent implements OnInit {
 			console.log(query)
 		})
 
-		console.log(this.route.data)
+		this.checks$ = this.api.fetchAll()
 
-		this.checks$ = this.store.getChecks()
-
-		this.checks$.subscribe(checks => {
-			this.allChecks = checks
-			this.addTags(checks)
+		this.checks$.subscribe({
+			next: (checks) => {
+				this.allChecks = checks
+				this.addTags(checks)
+			},
+			error: (err) => {
+				alert(err.message)
+			}
 		})
 
 
