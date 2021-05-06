@@ -12,23 +12,25 @@
 					</h5>
 				</li>
 				<li *ngFor="let check of labels">
-					{{ check.label }}
+					<a (click)="goTo(check)">{{check.system}}-{{ check.label }}</a>
 				</li>
 				<li *ngIf="systems.length > 0">
 					<h5 class="subheading">
 						Systems
 					</h5>
 				</li>
-				<li *ngFor="let check of systems">
-					{{ check.system }}
+				<li *ngFor="let system of systems" class="result">
+					<a class="checkbox" [ngClass]="{'checked': system.selected}"></a>
+					<a (click)="toggleItem(system)">{{ system.name }}</a>
 				</li>
 				<li *ngIf="tags.length > 0">
 					<h5 class="subheading">
 						Tags
 					</h5>
 				</li>
-				<li *ngFor="let tag of tags">
-					{{ tag }}
+				<li *ngFor="let tag of tags" class="result">
+					<a class="checkbox" [ngClass]="{'checked': tag.selected}"></a>
+					<a (click)="toggleItem(tag)">{{ tag.name }}</a>
 				</li>
 			</ul>
 		</div>

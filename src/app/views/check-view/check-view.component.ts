@@ -2,6 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { ApiService, Check } from "@app/services/api.service"
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from "rxjs"
+
+interface Item {
+	name: string
+	selected: boolean
+}
+
 @Component({
 	selector: "app-check-view",
 	templateUrl: "./check-view.component.html",
@@ -9,12 +15,12 @@ import { Observable } from "rxjs"
 export class CheckViewComponent implements OnInit {
 
 	allChecks: Check[] = []
-	allTags: Set<string>
+	allTags: Item[] = []
+	allSystems: Item[] = []
 	checks$: Observable<Check[]>
 	keyword: string
 
   	constructor(private api: ApiService, private router: Router, private route: ActivatedRoute) {
-		  this.allTags = new Set<string>()
 	  }
 
 	get active() {
@@ -26,13 +32,13 @@ export class CheckViewComponent implements OnInit {
 		return this.systems.length > 0 || this.labels.length > 0 || this.tags.length > 0
 	}
 
-	get systems() {
-		let list = this.allChecks.filter(check => {
-			return check.system.startsWith(this.keyword)
+	get systems() {		
+		let list = this.allSystems.filter(system => {
+			return system.name.startsWith(this.keyword)
 		})
 
 		return list.sort((a, b) => {
-			return (a.system > b.system) ? 1 : -1
+			return (a.name > b.name) ? 1 : -1
 		})
 	}
 
@@ -47,8 +53,8 @@ export class CheckViewComponent implements OnInit {
 	}
 
 	get tags() {
-		return Array.from(this.allTags).filter(tag => {
-			return tag.startsWith(this.keyword, 0)
+		return this.allTags.filter(tag => {
+			return tag.name.startsWith(this.keyword, 0)
 		})
 	}
 
@@ -56,10 +62,41 @@ export class CheckViewComponent implements OnInit {
 		this.keyword = ""
 	}
 
-	private addTags(checks: Check[]) {
+	private fetchData(checks: Check[]) {
+
+		let systems = new Set<string>()
+		let tags = new Set<string>()
+
 		checks.map(check => {
-			check.tags.map(tag => this.allTags.add(tag))
+			
+			systems.add(check.system)
+
+			check.tags.map(tag => {
+					tags.add(tag)
+			})
 		})
+
+		Array.from(tags).map(tag => {
+			let item: Item = {
+				name: tag,
+				selected: false
+			}
+
+			this.allTags.push(item)
+		})
+		
+		Array.from(systems).map(system => {
+			let item: Item = {
+				name: system,
+				selected: false
+			}
+
+			this.allSystems.push(item)
+		})
+	}
+
+	private toggleItem(item: Item) {
+		item.selected = !item.selected
 	}
 
 	public goTo(check: Check) {
@@ -84,7 +121,7 @@ export class CheckViewComponent implements OnInit {
 		this.checks$.subscribe({
 			next: (checks) => {
 				this.allChecks = checks
-				this.addTags(checks)
+				this.fetchData(checks)
 			},
 			error: (err) => {
 				alert(err.message)
