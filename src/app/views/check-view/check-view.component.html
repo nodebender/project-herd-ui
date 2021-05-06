@@ -1,10 +1,46 @@
 <section class="block">
 	<div class="search-bar">
-		<input class="hidden-input" type="text" (keydown)="search($event)">
+		<input [(ngModel)]="keyword" class="hidden-input" type="text" (keydown)="search($event)">
+		<a *ngIf="active" (click)="clear()">
+			Clear
+		</a>
+		<div *ngIf="active" class="search-results">
+			<ul>
+				<li *ngIf="labels.length > 0">
+					<h5 class="subheading">
+						Checks
+					</h5>
+				</li>
+				<li *ngFor="let check of labels">
+					{{ check.label }}
+				</li>
+				<li *ngIf="systems.length > 0">
+					<h5 class="subheading">
+						Systems
+					</h5>
+				</li>
+				<li *ngFor="let check of systems">
+					{{ check.system }}
+				</li>
+				<li *ngIf="tags.length > 0">
+					<h5 class="subheading">
+						Tags
+					</h5>
+				</li>
+				<li *ngFor="let tag of tags">
+					{{ tag }}
+				</li>
+			</ul>
+		</div>
 	</div>
 
+
 </section>
 
-<section>
-	<app-check-state *ngFor="let check of filtered" [state]="check" (click)="goTo(check)"></app-check-state>
+<section *ngIf="checks$ | async as checks; else loading">
+	<app-check-state *ngFor="let check of checks" [state]="check" (click)="goTo(check)"></app-check-state>
 </section>
+
+<ng-template #loading>
+	loading
+</ng-template>
