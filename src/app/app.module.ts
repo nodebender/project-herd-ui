@@ -2,6 +2,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from "./app-routing.module";
+import { FormsModule } from "@angular/forms";
+
 import { AppComponent } from "./app.component";
 import { SeverityComponent } from "./components/instance-statistics/severity/severity.component";
 import { InstanceStatusComponent } from "./components/instance-status/instance-status.component";
@@ -14,7 +16,6 @@ import { Timer } from "./pipes/human-date.pipe";
 import { CommentComponent } from "./components/comment/comment.component";
 import { CheckViewComponent } from "./views/check-view/check-view.component";
 import { CheckDetailsComponent } from "./views/check-details/check-details.component";
-
 import { StoreService } from "./services/store.service"
 
 @NgModule({
@@ -33,6 +34,7 @@ import { StoreService } from "./services/store.service"
   ],
   imports: [
     BrowserModule,
+	FormsModule,
 	HttpClientModule,
     AppRoutingModule
   ],

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 export interface Check {
 	system: string
@@ -19,12 +19,12 @@ export interface Check {
 })
 export class StoreService {
 
-	checks: Subject<Check[]>
+	checks: BehaviorSubject<Check[]>
 	storage: Map<string, Check>
 
 	constructor() {
 		this.storage = new Map<string, Check>()
-		this.checks = new Subject<Check[]>()
+		this.checks = new BehaviorSubject<Check[]>([])
 	}
 
 	provision(checks: Check[]) {

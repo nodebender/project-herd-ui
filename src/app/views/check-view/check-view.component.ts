@@ -1,34 +1,65 @@
 import { Component, OnInit } from "@angular/core";
 import { StoreService, Check } from "@app/services/store.service"
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
+import { Router, ActivatedRoute } from '@angular/router';
+import { delay, share } from 'rxjs/operators';
+import { Observable } from "rxjs"
 @Component({
 	selector: "app-check-view",
 	templateUrl: "./check-view.component.html",
 })
 export class CheckViewComponent implements OnInit {
 
-	checks: Check[]
+	allChecks: Check[]
+	allTags: Set<string>
+	checks$: Observable<Check[]>
 	keyword: string
 
-  	constructor(private store: StoreService, private router: Router) {}
+  	constructor(private store: StoreService, private router: Router, private route: ActivatedRoute) {
+		  this.allTags = new Set<string>()
+	  }
 
-	get filtered() {
+	get active() {
 
-		if (!this.keyword) {
-			return this.checks
+		if (this.keyword == "") {
+			return false
 		}
 
-		let list = this.checks.filter(check => {
+		return this.systems.length > 0 || this.labels.length > 0 || this.tags.length > 0
+	}
+
+	get systems() {
+		let list = this.allChecks.filter(check => {
+			return check.system.startsWith(this.keyword)
+		})
+
+		return list.sort((a, b) => {
+			return (a.system > b.system) ? 1 : -1
+		})
+	}
+
+	get labels() {
+		let list = this.allChecks.filter(check => {
 			return check.label.startsWith(this.keyword)
 		})
 
-		if (list.length != 0) {
-			return list
-		}
+		return list.sort((a, b) => {
+			return (a.label > b.label) ? 1 : -1
+		})
+	}
 
-		return this.checks.filter(check => {
-			return check.system.startsWith(this.keyword)
+	get tags() {
+		return Array.from(this.allTags).filter(tag => {
+			return tag.startsWith(this.keyword, 0)
+		})
+	}
+
+	private clear() {
+		this.keyword = ""
+	}
+
+	private addTags(checks: Check[]) {
+		checks.map(check => {
+			check.tags.map(tag => this.allTags.add(tag))
 		})
 	}
 
@@ -39,19 +70,25 @@ export class CheckViewComponent implements OnInit {
 	}
 
 	public search(event: KeyboardEvent) {
-		let target: any = event.target
-
 		if (event.key == "Escape") {
-			target.value = ""
+			this.keyword = ""
 		}
-
-		this.keyword = target.value
 	}
 
 	ngOnInit(): void {
-		this.store.getChecks().subscribe(checks => {
-			this.checks = checks
+		this.route.queryParams.subscribe(query => {
+			console.log(query)
 		})
+
+		console.log(this.route.data)
+
+		this.checks$ = this.store.getChecks()
+
+		this.checks$.subscribe(checks => {
+			this.allChecks = checks
+			this.addTags(checks)
+		})
+
 
 	}
 

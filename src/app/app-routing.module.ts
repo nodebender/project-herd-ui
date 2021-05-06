@@ -6,6 +6,11 @@ import { CheckDetailsComponent } from "@app/views/check-details/check-details.co
 const routes: Routes = [
 	{
 		path: "",
+		redirectTo: '/checks',
+		pathMatch: "full"
+	},
+	{
+		path: "checks",
 		component: CheckViewComponent
 	},
 	{
