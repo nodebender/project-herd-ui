@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-interface Check {
+export interface Check {
 	system: string
 	label: string
 	statusCode: string
@@ -14,6 +14,7 @@ interface Check {
 	updatedAt: number
 	changedAt: number
 }
+
 @Injectable({
   	providedIn: 'root'
 })

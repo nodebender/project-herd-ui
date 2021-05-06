@@ -16,7 +16,6 @@ import { Timer } from "./pipes/human-date.pipe";
 import { CommentComponent } from "./components/comment/comment.component";
 import { CheckViewComponent } from "./views/check-view/check-view.component";
 import { CheckDetailsComponent } from "./views/check-details/check-details.component";
-import { StoreService } from "./services/store.service"
 
 @NgModule({
   declarations: [
@@ -38,7 +37,7 @@ import { StoreService } from "./services/store.service"
 	HttpClientModule,
     AppRoutingModule
   ],
-  providers: [StoreService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
