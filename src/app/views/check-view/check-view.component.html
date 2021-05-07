@@ -1,10 +1,18 @@
 <section class="block">
 	<div class="search-bar">
 		<input [(ngModel)]="keyword" class="hidden-input" type="text" (keydown)="search($event)">
-		<a *ngIf="active" (click)="clear()">
+		<a *ngIf="active" (click)="applyFilter()" class="button">
+			Search
+		</a>
+		<a *ngIf="notclear" (click)="clear()" class="button">
 			Clear
 		</a>
 		<div *ngIf="active" class="search-results">
+			<!-- <div class="nav">
+				<a *ngIf="active" (click)="clear()" class="button">
+					Clear
+				</a>
+			</div> -->
 			<ul>
 				<li *ngIf="labels.length > 0">
 					<h5 class="subheading">
@@ -20,8 +28,8 @@
 					</h5>
 				</li>
 				<li *ngFor="let system of systems" class="result">
-					<a class="checkbox" [ngClass]="{'checked': system.selected}"></a>
-					<a (click)="toggleItem(system)">{{ system.name }}</a>
+					<a class="checkbox" [ngClass]="{'checked': systemSelected(system)}"></a>
+					<a (click)="toggleSystem(system)">{{ system }}</a>
 				</li>
 				<li *ngIf="tags.length > 0">
 					<h5 class="subheading">
@@ -29,8 +37,8 @@
 					</h5>
 				</li>
 				<li *ngFor="let tag of tags" class="result">
-					<a class="checkbox" [ngClass]="{'checked': tag.selected}"></a>
-					<a (click)="toggleItem(tag)">{{ tag.name }}</a>
+					<a class="checkbox" [ngClass]="{'checked': tagSelected(tag)}"></a>
+					<a (click)="toggleTag(tag)">{{ tag }}</a>
 				</li>
 			</ul>
 		</div>
@@ -39,8 +47,8 @@
 
 </section>
 
-<section *ngIf="checks$ | async as checks; else loading">
-	<app-check-state *ngFor="let check of checks" [state]="check" (click)="goTo(check)"></app-check-state>
+<section *ngIf="checks$ | async; else loading">
+	<app-check-state *ngFor="let check of filtered" [state]="check" (click)="goTo(check)"></app-check-state>
 </section>
 
 <ng-template #loading>
