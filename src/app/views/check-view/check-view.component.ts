@@ -3,11 +3,6 @@ import { ApiService, Check } from "@app/services/api.service"
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from "rxjs"
 
-interface Item {
-	name: string
-	selected: boolean
-}
-
 @Component({
 	selector: "app-check-view",
 	templateUrl: "./check-view.component.html",
@@ -15,88 +10,151 @@ interface Item {
 export class CheckViewComponent implements OnInit {
 
 	allChecks: Check[] = []
-	allTags: Item[] = []
-	allSystems: Item[] = []
 	checks$: Observable<Check[]>
-	keyword: string
+	keyword: string = ""
+
+	filterSystem: Set<string>
+	filterTags: Set<string>
 
   	constructor(private api: ApiService, private router: Router, private route: ActivatedRoute) {
-	  }
+		this.filterSystem = new Set<string>()
+		this.filterTags = new Set<string>()
+	}
+
+	get notclear() {
+		return this.filterTags.size > 0 || this.filterSystem.size > 0
+	}
 
 	get active() {
-
-		if (this.keyword == "") {
+		if (this.keyword.length == 0) {
 			return false
 		}
 
-		return this.systems.length > 0 || this.labels.length > 0 || this.tags.length > 0
+		return true
+	}
+
+	get filtered(): Check[] {
+
+		let list = this.allChecks
+
+		if (this.filterTags.size > 0) {
+			list = list.filter(check => {
+				return check.tags.some(tag => this.filterTags.has(tag))
+			})
+		}
+
+		if (this.filterSystem.size > 0) {
+			list = list.filter(check => {
+				return this.filterSystem.has(check.system)
+			})
+		}
+
+
+		return list
 	}
 
 	get systems() {		
-		let list = this.allSystems.filter(system => {
-			return system.name.startsWith(this.keyword)
+		let list = new Set<string>()
+		
+		this.allChecks.map(check => {
+			if (check.system.startsWith(this.keyword)) {
+				list.add(check.system)
+			}
 		})
 
-		return list.sort((a, b) => {
-			return (a.name > b.name) ? 1 : -1
+		return Array.from(list.values()).sort((a, b) => {
+			return (a > b) ? 1 : -1
 		})
 	}
 
 	get labels() {
+
 		let list = this.allChecks.filter(check => {
 			return check.label.startsWith(this.keyword)
 		})
 
-		return list.sort((a, b) => {
+		return Array.from(list).sort((a, b) => {
 			return (a.label > b.label) ? 1 : -1
 		})
 	}
 
 	get tags() {
-		return this.allTags.filter(tag => {
-			return tag.name.startsWith(this.keyword, 0)
+		let list = new Set<string>()
+
+		this.allChecks.map(check => {
+			check.tags.map(tag => {
+				if (tag.startsWith(this.keyword)) {
+					list.add(tag)
+				}
+			})
 		})
+
+		return Array.from(list).sort((a, b) => {
+			return (a > b) ? 1 : -1
+		})
+	}
+
+	private applyFilter() {
+		this.keyword = ""
+		let tags: (string | string[]) 
+		let systems: (string | string[])
+		
+		if (this.filterTags.size == 1) {
+			tags = Array.from(this.filterTags)[0]
+		}
+
+		if (this.filterTags.size > 1) {
+			tags = Array.from(this.filterTags)
+		}
+
+		if (this.filterSystem.size == 1) {
+			systems = Array.from(this.filterSystem)[0]
+		}
+
+		if (this.filterSystem.size > 1) {
+			systems = Array.from(this.filterSystem)
+		}
+
+		let params = {
+			tag: tags,
+			system: systems
+		}
+
+
+		return this.router.navigate(["/checks"], {queryParams: params})
 	}
 
 	private clear() {
 		this.keyword = ""
+		this.filterTags.clear()
+		this.filterSystem.clear()
+		return this.router.navigate(["/checks"])
 	}
 
-	private fetchData(checks: Check[]) {
-
-		let systems = new Set<string>()
-		let tags = new Set<string>()
-
-		checks.map(check => {
-			
-			systems.add(check.system)
-
-			check.tags.map(tag => {
-					tags.add(tag)
-			})
-		})
-
-		Array.from(tags).map(tag => {
-			let item: Item = {
-				name: tag,
-				selected: false
-			}
-
-			this.allTags.push(item)
-		})
-		
-		Array.from(systems).map(system => {
-			let item: Item = {
-				name: system,
-				selected: false
-			}
-
-			this.allSystems.push(item)
-		})
+	private tagSelected(tag: string) {
+		return this.filterTags.has(tag)
 	}
 
-	private toggleItem(item: Item) {
-		item.selected = !item.selected
+	private systemSelected(system: string) {
+		return this.filterSystem.has(system)
+	}
+
+	private toggleTag(tag: string) {
+		if (this.filterTags.has(tag)) {
+			this.filterTags.delete(tag)
+			return
+		}
+
+		this.filterTags.add(tag)
+	}
+
+	private toggleSystem(system: string) {
+		if (this.filterSystem.has(system)) {
+			this.filterSystem.delete(system)
+			return
+		}
+
+		this.filterSystem.add(system)
 	}
 
 	public goTo(check: Check) {
@@ -113,7 +171,23 @@ export class CheckViewComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.route.queryParams.subscribe(query => {
-			console.log(query)
+
+			if (typeof query.tag == "string") {
+				this.filterTags.add(query.tag)
+			}
+
+			if (Array.isArray(query.tag)) {
+				query.tag.map(tag => this.filterTags.add(tag))
+			}
+
+			if (typeof query.system == "string") {
+				this.filterSystem.add(query.system)
+			}
+
+			if (Array.isArray(query.tag)) {
+				query.system.map(system =>this.filterSystem.add(system))
+			}
+
 		})
 
 		this.checks$ = this.api.fetchAll()
@@ -121,7 +195,6 @@ export class CheckViewComponent implements OnInit {
 		this.checks$.subscribe({
 			next: (checks) => {
 				this.allChecks = checks
-				this.fetchData(checks)
 			},
 			error: (err) => {
 				alert(err.message)
