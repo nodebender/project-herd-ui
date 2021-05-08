@@ -118,21 +118,14 @@ app-search {
 	margin-bottom: 0.4rem;
 }
 
-.search-results {
+.filter {
 	position: absolute;
 	top: 3rem;
-	left: 0;
+	right: 0;
 	background-color: black;
 	padding: 0.5rem 0.4rem 1rem 0.4rem;
 	border-radius: 4px;
-	width: 100%;
 	color: grey;
-}
-.subheading {
-	padding: 0.2rem 0;
-	border-bottom: 1px solid white;
-	margin: 0.4rem 0;
-	color: white;
 }
 
 .nav {
@@ -143,10 +136,15 @@ app-search {
 
 a.button {
 	padding: 0.4rem 1rem;
-	background-color: white;
-	color: black;
+	border: 1px solid white;
+	color: white;
 	border-radius: 4px;
 	margin: 0 0.2rem;
+
+	&.active {
+		background-color: white;
+		color: black;
+	}
 }
 
 .result {
@@ -159,8 +157,10 @@ a.button {
 	height: 1rem;
 	width: 1rem;
 	border: 1px solid white;
+	border-radius: 4px;
 	z-index: 10;
 	margin-right: 1rem;
+
 	&.checked {
 		background-color: white;
 	}

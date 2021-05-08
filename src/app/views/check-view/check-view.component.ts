@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ɵɵtrustConstantResourceUrl } from "@angular/core";
 import { ApiService, Check } from "@app/services/api.service"
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from "rxjs"
@@ -13,148 +13,63 @@ export class CheckViewComponent implements OnInit {
 	checks$: Observable<Check[]>
 	keyword: string = ""
 
-	filterSystem: Set<string>
-	filterTags: Set<string>
+	showFilter: boolean
 
-  	constructor(private api: ApiService, private router: Router, private route: ActivatedRoute) {
-		this.filterSystem = new Set<string>()
-		this.filterTags = new Set<string>()
-	}
+	filterLabels: boolean = true
+	filterSystems: boolean = true
+	filterTags: boolean = true
 
-	get notclear() {
-		return this.filterTags.size > 0 || this.filterSystem.size > 0
-	}
-
-	get active() {
-		if (this.keyword.length == 0) {
-			return false
-		}
-
-		return true
-	}
+  	constructor(private api: ApiService, private router: Router, private route: ActivatedRoute) {}
 
 	get filtered(): Check[] {
+		let list: Check[] = this.allChecks
 
-		let list = this.allChecks
+		if (this.keyword.length != 0) {
+			list = []
+		}
 
-		if (this.filterTags.size > 0) {
-			list = list.filter(check => {
-				return check.tags.some(tag => this.filterTags.has(tag))
+		let search = this.keyword.toLowerCase()
+
+		if (this.filterLabels) {
+			list = this.allChecks.filter(check => {
+				return check.label.startsWith(search)
 			})
 		}
 
-		if (this.filterSystem.size > 0) {
-			list = list.filter(check => {
-				return this.filterSystem.has(check.system)
+		if (this.filterSystems) {
+			let systems = this.allChecks.filter(check => {
+				return check.system.startsWith(search)
 			})
+
+			list = list.concat(systems)
 		}
 
+		if (this.filterTags) {
+			let tags = this.allChecks.filter(check => {
+				return check.tags.some(tag => tag == search)
+			})
+
+			list = list.concat(tags)
+		}
 
 		return list
 	}
 
-	get systems() {		
-		let list = new Set<string>()
-		
-		this.allChecks.map(check => {
-			if (check.system.startsWith(this.keyword)) {
-				list.add(check.system)
-			}
-		})
-
-		return Array.from(list.values()).sort((a, b) => {
-			return (a > b) ? 1 : -1
-		})
+	public toggleFilter() {
+		this.showFilter = !this.showFilter
 	}
 
-	get labels() {
-
-		let list = this.allChecks.filter(check => {
-			return check.label.startsWith(this.keyword)
-		})
-
-		return Array.from(list).sort((a, b) => {
-			return (a.label > b.label) ? 1 : -1
-		})
+	public toggleLabels() {
+		this.filterLabels = !this.filterLabels
 	}
 
-	get tags() {
-		let list = new Set<string>()
 
-		this.allChecks.map(check => {
-			check.tags.map(tag => {
-				if (tag.startsWith(this.keyword)) {
-					list.add(tag)
-				}
-			})
-		})
-
-		return Array.from(list).sort((a, b) => {
-			return (a > b) ? 1 : -1
-		})
+	public toggleSystems() {
+		this.filterSystems = !this.filterSystems
 	}
 
-	private applyFilter() {
-		this.keyword = ""
-		let tags: (string | string[]) 
-		let systems: (string | string[])
-		
-		if (this.filterTags.size == 1) {
-			tags = Array.from(this.filterTags)[0]
-		}
-
-		if (this.filterTags.size > 1) {
-			tags = Array.from(this.filterTags)
-		}
-
-		if (this.filterSystem.size == 1) {
-			systems = Array.from(this.filterSystem)[0]
-		}
-
-		if (this.filterSystem.size > 1) {
-			systems = Array.from(this.filterSystem)
-		}
-
-		let params = {
-			tag: tags,
-			system: systems
-		}
-
-
-		return this.router.navigate(["/checks"], {queryParams: params})
-	}
-
-	private clear() {
-		this.keyword = ""
-		this.filterTags.clear()
-		this.filterSystem.clear()
-		return this.router.navigate(["/checks"])
-	}
-
-	private tagSelected(tag: string) {
-		return this.filterTags.has(tag)
-	}
-
-	private systemSelected(system: string) {
-		return this.filterSystem.has(system)
-	}
-
-	private toggleTag(tag: string) {
-		if (this.filterTags.has(tag)) {
-			this.filterTags.delete(tag)
-			return
-		}
-
-		this.filterTags.add(tag)
-	}
-
-	private toggleSystem(system: string) {
-		if (this.filterSystem.has(system)) {
-			this.filterSystem.delete(system)
-			return
-		}
-
-		this.filterSystem.add(system)
+	public toggleTags() {
+		this.filterTags = !this.filterTags
 	}
 
 	public goTo(check: Check) {
@@ -170,26 +85,6 @@ export class CheckViewComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.route.queryParams.subscribe(query => {
-
-			if (typeof query.tag == "string") {
-				this.filterTags.add(query.tag)
-			}
-
-			if (Array.isArray(query.tag)) {
-				query.tag.map(tag => this.filterTags.add(tag))
-			}
-
-			if (typeof query.system == "string") {
-				this.filterSystem.add(query.system)
-			}
-
-			if (Array.isArray(query.tag)) {
-				query.system.map(system =>this.filterSystem.add(system))
-			}
-
-		})
-
 		this.checks$ = this.api.fetchAll()
 
 		this.checks$.subscribe({
