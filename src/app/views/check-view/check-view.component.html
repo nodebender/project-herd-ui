@@ -1,49 +1,26 @@
 <section class="block">
 	<div class="search-bar">
 		<input [(ngModel)]="keyword" class="hidden-input" type="text" (keydown)="search($event)">
-		<a *ngIf="active" (click)="applyFilter()" class="button">
-			Search
+		<a (click)="toggleFilter()" class="button">
+			Filter
 		</a>
-		<a *ngIf="notclear" (click)="clear()" class="button">
-			Clear
-		</a>
-		<div *ngIf="active" class="search-results">
-			<!-- <div class="nav">
-				<a *ngIf="active" (click)="clear()" class="button">
-					Clear
-				</a>
-			</div> -->
+		<div *ngIf="showFilter" class="filter">
 			<ul>
-				<li *ngIf="labels.length > 0">
-					<h5 class="subheading">
-						Checks
-					</h5>
+				<li class="result">
+					<a class="checkbox" [ngClass]="{'checked': filterLabels}"></a>
+					<a (click)="toggleLabels()">Labels</a>
 				</li>
-				<li *ngFor="let check of labels">
-					<a (click)="goTo(check)">{{check.system}}-{{ check.label }}</a>
+				<li class="result">
+					<a class="checkbox" [ngClass]="{'checked': filterSystems}"></a>
+					<a (click)="toggleSystems()">Systems</a>
 				</li>
-				<li *ngIf="systems.length > 0">
-					<h5 class="subheading">
-						Systems
-					</h5>
-				</li>
-				<li *ngFor="let system of systems" class="result">
-					<a class="checkbox" [ngClass]="{'checked': systemSelected(system)}"></a>
-					<a (click)="toggleSystem(system)">{{ system }}</a>
-				</li>
-				<li *ngIf="tags.length > 0">
-					<h5 class="subheading">
-						Tags
-					</h5>
-				</li>
-				<li *ngFor="let tag of tags" class="result">
-					<a class="checkbox" [ngClass]="{'checked': tagSelected(tag)}"></a>
-					<a (click)="toggleTag(tag)">{{ tag }}</a>
+				<li class="result">
+					<a class="checkbox" [ngClass]="{'checked': filterTags}"></a>
+					<a (click)="toggleTags()">Tags</a>
 				</li>
 			</ul>
 		</div>
 	</div>
-
 
 </section>
 
