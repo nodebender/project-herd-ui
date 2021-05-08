@@ -37,7 +37,6 @@ export class CheckViewComponent implements OnInit {
 		}
 
 		if (this.filterSystems) {
-			console.log("HAS SYSTEMS")
 			let systems = this.allChecks.filter(check => {
 				return check.system.startsWith(search)
 			})
@@ -57,7 +56,6 @@ export class CheckViewComponent implements OnInit {
 	}
 
 	public toggleFilter() {
-		console.log(this.showFilter)
 		this.showFilter = !this.showFilter
 	}
 
