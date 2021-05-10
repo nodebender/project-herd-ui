@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpParams} from "@angular/common/http";
+import { Observable } from "rxjs";
 
 export interface Check {
 	system: string
@@ -16,15 +16,15 @@ export interface Check {
 }
 
 @Injectable({
-  	providedIn: 'root'
+  	providedIn: "root"
 })
 export class ApiService {
 
 	constructor(private http: HttpClient) {}
 
 	public getById(id: string) {
-		let params = new HttpParams().set("id", id)
-		return this.http.get<Check>("/api/check", {params: params})
+		const params = new HttpParams().set("id", id)
+		return this.http.get<Check>("/api/check", {params})
 	}
 
 	public fetchAll(): Observable<Check[]> {

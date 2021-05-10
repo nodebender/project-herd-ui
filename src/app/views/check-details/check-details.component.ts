@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from "@angular/router";
 import { ApiService } from "@app/services/api.service"
 
 interface State {

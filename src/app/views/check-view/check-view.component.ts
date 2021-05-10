@@ -1,6 +1,6 @@
 import { Component, OnInit, ɵɵtrustConstantResourceUrl } from "@angular/core";
 import { ApiService, Check } from "@app/services/api.service"
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs"
 
 @Component({
@@ -11,24 +11,24 @@ export class CheckViewComponent implements OnInit {
 
 	allChecks: Check[] = []
 	checks$: Observable<Check[]>
-	keyword: string = ""
+	keyword = ""
 
 	showFilter: boolean
 
-	filterLabels: boolean = true
-	filterSystems: boolean = true
-	filterTags: boolean = true
+	filterLabels = true
+	filterSystems = true
+	filterTags = true
 
   	constructor(private api: ApiService, private router: Router, private route: ActivatedRoute) {}
 
 	get filtered(): Check[] {
 		let list: Check[] = this.allChecks
 
-		if (this.keyword.length != 0) {
+		if (this.keyword.length !== 0) {
 			list = []
 		}
 
-		let search = this.keyword.toLowerCase()
+		const search = this.keyword.toLowerCase()
 
 		if (this.filterLabels) {
 			list = this.allChecks.filter(check => {
@@ -37,7 +37,7 @@ export class CheckViewComponent implements OnInit {
 		}
 
 		if (this.filterSystems) {
-			let systems = this.allChecks.filter(check => {
+			const systems = this.allChecks.filter(check => {
 				return check.system.startsWith(search)
 			})
 
@@ -45,8 +45,8 @@ export class CheckViewComponent implements OnInit {
 		}
 
 		if (this.filterTags) {
-			let tags = this.allChecks.filter(check => {
-				return check.tags.some(tag => tag == search)
+			const tags = this.allChecks.filter(check => {
+				return check.tags.some(tag => tag === search)
 			})
 
 			list = list.concat(tags)
@@ -73,13 +73,13 @@ export class CheckViewComponent implements OnInit {
 	}
 
 	public goTo(check: Check) {
-		let identifier = `${check.system}-${check.label}`
+		const identifier = `${check.system}-${check.label}`
 
 		return this.router.navigate(["/check/", identifier])
 	}
 
 	public search(event: KeyboardEvent) {
-		if (event.key == "Escape") {
+		if (event.key === "Escape") {
 			this.keyword = ""
 		}
 	}
